@@ -16,6 +16,8 @@ describe('Orange HRM Teste', () => {
     dateField:    '[placeholder= "yyyy-dd-mm"]',
     dateCloseButton:  ".--close",
     submmitButton: "[type='submit']",
+    messageFinishField: '.oxd-toast',
+    genericComboBoxSelect: '.oxd-select-text',
   }
   
 
@@ -35,9 +37,15 @@ describe('Orange HRM Teste', () => {
     cy.get(selectorsList.genericField).eq(5).clear().type('Driverslicenscetest')
     cy.get(selectorsList.dateField).eq(0).clear().type('2026-28-06')
     cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.submmitButton).eq(0).click()
-    // cy.get('body').should('contains', 'SuccessFully Update')
-    cy.get('.oxd-toast').should('be.visible')
+    cy.get(selectorsList.genericComboBoxSelect).eq(0).click()
+    cy.contains('Bahamian').click()
+    cy.get(selectorsList.genericComboBoxSelect).eq(1).click()
+    cy.contains('Single').click()
+    cy.get(selectorsList.genericComboBoxSelect).eq(2).click()
+    cy.contains('O+').click()
+    cy.get(selectorsList.submmitButton).eq(0).click({force: true})
+    cy.get(selectorsList.messageFinishField).should('be.visible')
+    
    
  
 
