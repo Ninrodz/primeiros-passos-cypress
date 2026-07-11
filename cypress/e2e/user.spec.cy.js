@@ -1,15 +1,19 @@
 import userData from  '../fixtures/users/user-data.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'
+import MenuPage from '../pages/menuPage'
+import MyInfoPage from '../pages/myInfoPage'
+
+const loginPage = new LoginPage ()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
+const myInfoPage = new MyInfoPage()
 
 describe('Orange HRM Teste', () => {
 
   const selectorsList = {
-    usernameField: "[name= 'username']",
-    passwordField: "[name= 'password']",
-    loginButton:    "[type='submit']",
-    dashboardGrid: ".orangehrm-dashboard-grid",
-    sectionTitleTopBar: '.oxd-topbar-header',
-    wrongCrendentialAlert: '.oxd-alert',
-    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+
+    
     firstNameField: '[name="firstName"]',
     lastNameField: '[name="lastName"]',
     genericField: ".oxd-input--active",
@@ -23,28 +27,31 @@ describe('Orange HRM Teste', () => {
 
 
   it.only('User Info Update - success', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
-    cy.get(selectorsList.myInfoButton).click()
-    cy.get(selectorsList.firstNameField).clear().type('firstNameTest')
-    cy.get(selectorsList.lastNameField).clear().type('lastnameTest')
-    cy.get(selectorsList.genericField).eq(3).clear().type('Employee')
-    cy.get(selectorsList.genericField).eq(4).clear().type('otherIdTest')
-    cy.get(selectorsList.genericField).eq(5).clear().type('Driverslicenscetest')
-    cy.get(selectorsList.dateField).eq(0).clear().type('2026-28-06')
-    cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.genericComboBoxSelect).eq(0).click()
-    cy.contains('Bahamian').click()
-    cy.get(selectorsList.genericComboBoxSelect).eq(1).click()
-    cy.contains('Single').click()
-    cy.get(selectorsList.genericComboBoxSelect).eq(2).click()
-    cy.contains('O+').click()
-    cy.get(selectorsList.submmitButton).eq(0).click({force: true})
-    cy.get(selectorsList.messageFinishField).should('be.visible')
+
+    loginPage.accessLoginPage()
+    loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
+
+    dashboardPage.checkDashboard()
+
+    menuPage.accessMyInfo()
+
+    myInfoPage.registerName('firstName','lastName')
+
+    
+  
+    // cy.get(selectorsList.genericField).eq(3).clear().type('Employee')
+    // cy.get(selectorsList.genericField).eq(4).clear().type('IdTest')
+    // cy.get(selectorsList.genericField).eq(5).clear().type('Driverslicenscetest')
+    // cy.get(selectorsList.dateField).eq(0).clear().type('2026-28-06')
+    // cy.get(selectorsList.dateCloseButton).click()
+    // cy.get(selectorsList.genericComboBoxSelect).eq(0).click()
+    // cy.contains('Bahamian').click()
+    // cy.get(selectorsList.genericComboBoxSelect).eq(1).click()
+    // cy.contains('Single').click()
+    // cy.get(selectorsList.genericComboBoxSelect).eq(2).click()
+    // cy.contains('O+').click()
+    // cy.get(selectorsList.submmitButton).eq(0).click({force: true})
+    // cy.get(selectorsList.messageFinishField).should('be.visible')
     
    
  
