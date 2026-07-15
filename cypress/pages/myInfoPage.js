@@ -3,9 +3,10 @@ class MyInfoPage {
     selectorsList() {
         const selectors = {
             firstNameField: '[name="firstName"]',
+            middlenameField: '[name="middleName"]',
             lastNameField: '[name="lastName"]',
             genericField: ".oxd-input--active",
-            dateField: "[placeholder='yyyy-mm-dd']",
+            dateField: ".oxd-date-input input",
             dateCloseButton:  ".--close",
             submmitButton: "[type='submit']",
             messageFinishField: '.oxd-toast',
@@ -15,9 +16,11 @@ class MyInfoPage {
         return selectors
     }
 
-    fillRegisterName(firstName, lastName,) {
+    fillRegisterName(firstName, middlenameField, lastName,) {
         cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().middlenameField).clear({force: true}).type(middlenameField)
         cy.get(this.selectorsList().lastNameField).clear().type(lastName)
+      
 
     }
 
