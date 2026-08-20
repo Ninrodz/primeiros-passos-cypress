@@ -1,21 +1,64 @@
 # My Cypress Automation
-This Project utilizes Cypress to automate the testing of a login feature and a user update feature.
-Cypress is a JavaScript-based end-to-end testing framework that allows developes to write tests and execute them in a real browser
+
+This project uses Cypress to automate web application testing scenarios.
+
+The project was developed as part of my QA studies, with a focus on functional testing and test automation.
+
+## Test Scenarios
+
+The following scenarios were automated:
+
+* Login with valid credentials
+* Login with invalid credentials
+* User information update
+* Validation of expected application behavior
+
+## Technologies
+
+* Cypress
+* JavaScript
+* Node.js
+* Chance.js
+
+## Project Structure
+
+```text
+cypress/
+├── e2e/
+├── fixtures/
+├── pages/
+└── support/
+
+cypress.config.js
+package.json
+README.md
+```
 
 ## Installation
+
+Node.js is required to run this project.
+
+Install the project dependencies:
 
 ```bash
 npm install
 ```
->**NOTE:**
->
-> it is necessary to have **node** installed
 
-## Running 
+## Running the Tests
+
+To open the Cypress interface:
+
 ```bash
-# You open the Cypress UI 
 npx cypress open
-
-# Run the automation by command line
-npx cypress run 
 ```
+
+To run the tests in the command line:
+
+```bash
+npx cypress run
+```
+
+## Project Goal
+
+The goal of this project was to practice QA concepts and test automation by creating functional test scenarios and using Cypress to execute and validate tests in a web application.
+
